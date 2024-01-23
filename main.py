@@ -18,6 +18,7 @@ api_secret = twitter_config['api_secret']
 token = twitter_config['token']
 token_secret = twitter_config['token_secret']
 
+
 def make_soup(url):
     raw_data = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
     soup = bs4.BeautifulSoup(raw_data.text, "lxml")
@@ -40,7 +41,7 @@ def post_to_twitter(data,is_enroute,is_arrived):
     if is_enroute:
         tweet_text = f'🛳️ {data[0]}\n\nCurrently at📍 {data[1]}\n\nHeaded To ➡️ {data[2]}\n\nETA 🕒 {data[3]}\n\nLatest Port ⛱️ {data[4]}'
     elif is_arrived:
-        tweet_text = f'🛳️ {data[0]}\n\nCurrently at📍 {data[1]}\n\nArrived at 🕒 {data[2]}\n\nLatest Port ⛱️ {data[4]}'
+        tweet_text = f'🛳️ {data[0]}\n\nCurrently at📍 {data[1]}\n\nArrived at 🕒 {data[2]}\n\nPrevious Port ⛱️ {data[3]}'
     api = tweepy.Client(
         consumer_key=api_key,
         consumer_secret=api_secret,
